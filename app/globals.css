@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111; /* Bir oz yumshoqроқ qora */
+  
+  /* NOMALASH TO'G'RILANDI: Tailwind v4 tizimi bilan to'g'ridan-to'g'ri bog'landi */
+  --color-border-subtle: #f4f4f5; 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b; /* Premium quyuq kulrang-qora (Zinc-950) */
+    --foreground: #fafafa;
+    
+    /* DARK MODE BORDERI: Tungi rejim uchun nozik to'q kulrang */
+    --color-border-subtle: #27272a;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* Bu qator o'zgaruvchini Tailwind klassi sifatida ham ishlatish imkonini beradi */
+  --color-border-subtle: var(--color-border-subtle);
+  
+  /* Tizimga Geist shriftini asosiy font sifatida kiritamiz */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  /* Arialni butunlay o'chirib, o'rniga premium Geist (font-sans) ni ulaymiz */
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+/* Tungi rejim yoqilganda barcha oq fonlarni avtomatik ravishda quyuqlashtirish */
+.dark body, 
+.dark main,
+.dark page {
+  background-color: #09090b !important; /* Tailwind bg-zinc-950 rangi */
+  color: #f4f4f5 !important;            /* Tailwind text-zinc-50 rangi */
+}
+
+/* Tungi rejimda barcha och kulrang chegaralarni to'q qilish */
+.dark border-zinc-100,
+.dark .border-zinc-200 {
+  border-color: #27272a !important;     /* Tailwind border-zinc-800 rangi */
+}
+
+/* Dark modeda umumiy sahifa va qismlarning standart边界 Standartlari */
+.dark border-zinc-100,
+.dark .border-zinc-200,
+.dark .border-b {
+  border-color: #1f1f23 !important; /* Toza va nafis to'q chegara rangi */
+}
